@@ -1,11 +1,9 @@
-window.Vue = require('vue').default;
-import Vue from 'vue';
-import Vuex from 'vuex';
-import Routerlist from './router/router';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const productsStore = {
+const product = new Vuex.Store({
     state: {
         products:
             [
@@ -15,24 +13,7 @@ const productsStore = {
                 { "id": 4, "product_name": "CHANEL4", "product_price": 2000, "product_image": "http:\/\/product.test\/img\/photo-1563170351-be82bc888aa4.jpeg" },
                 { "id": 5, "product_name": "CHANEL5", "product_price": 2000, "product_image": "http:\/\/product.test\/img\/photo-1563170351-be82bc888aa4.jpeg" }
             ]
-    },
-    getters: {
-        getProducts: state => {
-            return state.products
-        }
-    }
-};
-
-const store = new Vuex.Store({
-    modules: {
-        products: productsStore,
     }
 })
 
-
-Vue.component('navbar', require('./components/Navbar.vue').default)
-new Vue({
-    el: '#app',
-    router: Routerlist,
-    store
-});
+export default product
