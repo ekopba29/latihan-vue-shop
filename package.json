@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "bulma": "^0.9.3",
-        "bulma-o-steps": "^1.1.0"
+        "bulma-o-steps": "^1.1.0",
+        "vue-router": "^3.5.3"
     }
 }
