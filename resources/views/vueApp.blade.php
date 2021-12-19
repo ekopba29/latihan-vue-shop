@@ -26,7 +26,7 @@
                 </div>
                 <div class="navbar-end">
                     <a class="navbar-item">
-                        
+
                         <i class="fa fa-shopping-cart">&nbsp; <div class="tag is-danger is-small">3</div></i>
                     </a>
                 </div>
@@ -34,21 +34,156 @@
 
             <div class="section">
                 <div class="box">
+                    <div class="box-header">
+                        <ul class="steps is-balanced">
+                            <li class="steps-segment">
+                                <span class="steps-marker"></span>
+                                <div class="steps-content">
+                                    <p class="is-size-4">Step 1</p>
+                                    <p>My Identity</p>
+                                </div>
+                            </li>
+                            <li class="steps-segment">
+                                <span class="steps-marker"></span>
+                                <div class="steps-content">
+                                    <p class="is-size-4">Step 2</p>
+                                    <p>My Document</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-content">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                              <input class="input" type="text" placeholder="Text input">
+                            </div>
+                          </div>
+                          
+                          <div class="field">
+                            <label class="label">Username</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                              </span>
+                            </div>
+                            <p class="help is-success">This username is available</p>
+                          </div>
+                          
+                          <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                              </span>
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-exclamation-triangle"></i>
+                              </span>
+                            </div>
+                            <p class="help is-danger">This email is invalid</p>
+                          </div>
+                          
+                          <div class="field">
+                            <label class="label">Subject</label>
+                            <div class="control">
+                              <div class="select">
+                                <select>
+                                  <option>Select dropdown</option>
+                                  <option>With options</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="field">
+                            <label class="label">Message</label>
+                            <div class="control">
+                              <textarea class="textarea" placeholder="Textarea"></textarea>
+                            </div>
+                          </div>
+                          
+                          <div class="field">
+                            <div class="control">
+                              <label class="checkbox">
+                                <input type="checkbox">
+                                I agree to the <a href="#">terms and conditions</a>
+                              </label>
+                            </div>
+                          </div>
+                          
+                          <div class="field">
+                            <div class="control">
+                              <label class="radio">
+                                <input type="radio" name="question">
+                                Yes
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="question">
+                                No
+                              </label>
+                            </div>
+                          </div>
+                          
+                          <div class="field is-grouped">
+                            <div class="control">
+                              <button class="button is-link">Submit</button>
+                            </div>
+                            <div class="control">
+                              <button class="button is-link is-light">Cancel</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <article class="panel is-primary">
+                    <p class="panel-heading">
+                        MyCart
+                    </p>
+                    <a class="panel-block column is-active">
+                        <div class="columns">
+                            <div class="column is-6">
+                                bulma &nbsp;
+                                <span class="tag is-normal is-link">4</span>
+                            </div>
+                            <div class="column is-6">
+                                <div class="button is-pulled-right is-small m-2 is-info">+</div>
+                                <div class="button is-pulled-right is-small m-2 is-danger">-</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="columns is-centered">
+                        <div class="m-5">
+                            <button class="is-small button is-link">
+                                Checkout
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="section">
+                <div class="box">
                     <article class="media">
                         <div class="media-left is-marginless" style="position: sticky; top: 0;">
                             <div class="card-image column">
                                 <figure class="image">
-                                    <img src="https://picsum.photos/30/30" alt="Placeholder image">
+                                    <img src="https://picsum.photos/40/40" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="card-image column">
                                 <figure class="image">
-                                    <img src="https://picsum.photos/30/30" alt="Placeholder image">
+                                    <img src="https://picsum.photos/40/40" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="card-image column">
                                 <figure class="image">
-                                    <img src="https://picsum.photos/30/30" alt="Placeholder image">
+                                    <img src="https://picsum.photos/40/40" alt="Placeholder image">
                                 </figure>
                             </div>
                         </div>
@@ -59,7 +194,7 @@
                                 </figure>
                             </div>
                             <div class="column is-primary is-pulled-right">
-                                <button class="button is-primary is-small">
+                                <button class="button is-small">
                                     <i class="fa fa-shopping-cart">&nbsp;Add to cart</i>
                                 </button>
                             </div>
@@ -112,7 +247,7 @@
             </div>
 
             <section class="section">
-                <h1 class="title">Banyak orang mencari ini</h1>
+                <h1 class="title is-danger">New Arrival</h1>
                 <hr>
                 <div class="columns is-multiline">
                     <div class="column is-3">
@@ -125,7 +260,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -145,7 +282,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -165,7 +304,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -185,7 +326,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -205,7 +348,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -225,7 +370,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -245,7 +392,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
@@ -265,7 +414,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p><h3>Sandal</h3></p>
+                                        <p>
+                                        <h3>Sandal</h3>
+                                        </p>
                                         <p>Rp.4000</p>
                                     </div>
                                 </div>
