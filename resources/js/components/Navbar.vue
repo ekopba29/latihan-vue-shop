@@ -16,7 +16,7 @@
       <a class="navbar-item">
         <i class="fa fa-shopping-cart"
           >&nbsp;
-          <div class="tag is-danger is-small">3</div></i
+          <div class="tag is-danger is-small">{{ cart.length }}</div></i
         >
       </a>
     </div>
@@ -24,7 +24,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Navbar",
+  computed: {
+    ...mapGetters({ cart: "getCart" }),
+  }
 };
 </script>

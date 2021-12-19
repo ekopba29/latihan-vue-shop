@@ -12,6 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -37,8 +44,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Navbar"
+  name: "Navbar",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    cart: "getCart"
+  }))
 });
 
 /***/ }),
@@ -380,8 +391,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "ProductDetail"
+  name: "ProductDetail",
+  data: function data() {
+    return {//   product: this.$store.getters.getProductById(this.$route.params.id),
+    };
+  },
+  computed: {
+    product: function product() {
+      return this.$store.getters.getProductById(1);
+    }
+  },
+  methods: {
+    addToCart: function addToCart() {
+      this.$store.commit('addToCart', this.product);
+    }
+  }
 });
 
 /***/ }),
@@ -433,12 +488,49 @@ var productsStore = {
   getters: {
     getProducts: function getProducts(state) {
       return state.products;
+    },
+    getProductById: function getProductById(state) {
+      return function (id) {
+        var find = state.products.filter(function (items) {
+          return items.id == id;
+        });
+
+        if (find.length > 0) {
+          return find[0];
+        }
+      };
+    }
+  }
+};
+var cartStore = {
+  state: {
+    cart: []
+  },
+  getters: {
+    getCart: function getCart(state) {
+      return state.cart;
+    }
+  },
+  mutations: {
+    addToCart: function addToCart(state, product) {
+      var findInCart = state.cart.filter(function (theCart) {
+        return theCart.id == product.id;
+      });
+      var alreadyInCart = findInCart.length > 0;
+
+      if (alreadyInCart) {
+        findInCart[0].total += 1;
+      } else {
+        product.total = 1;
+        state.cart.push(product);
+      }
     }
   }
 };
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   modules: {
-    products: productsStore
+    products: productsStore,
+    cart: cartStore
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('navbar', (__webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue")["default"]));
@@ -869,54 +961,51 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "nav",
+    {
+      staticClass: "navbar",
+      attrs: { role: "navigation", "aria-label": "main navigation" },
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "navbar-end" }, [
+        _c("a", { staticClass: "navbar-item" }, [
+          _c("i", { staticClass: "fa fa-shopping-cart" }, [
+            _vm._v(" \n        "),
+            _c("div", { staticClass: "tag is-danger is-small" }, [
+              _vm._v(_vm._s(_vm.cart.length)),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      {
-        staticClass: "navbar",
-        attrs: { role: "navigation", "aria-label": "main navigation" },
-      },
-      [
-        _c("div", { staticClass: "navbar-start" }, [
-          _c("div", { staticClass: "navbar-brand" }, [
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                attrs: { href: "https://bulma.io" },
+    return _c("div", { staticClass: "navbar-start" }, [
+      _c("div", { staticClass: "navbar-brand" }, [
+        _c(
+          "a",
+          { staticClass: "navbar-item", attrs: { href: "https://bulma.io" } },
+          [
+            _c("img", {
+              attrs: {
+                src: "https://bulma.io/images/bulma-logo.png",
+                alt: "Bulma: Free, open source, and modern CSS framework based on Flexbox",
+                width: "112",
+                height: "28",
               },
-              [
-                _c("img", {
-                  attrs: {
-                    src: "https://bulma.io/images/bulma-logo.png",
-                    alt: "Bulma: Free, open source, and modern CSS framework based on Flexbox",
-                    width: "112",
-                    height: "28",
-                  },
-                }),
-              ]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "navbar-end" }, [
-          _c("a", { staticClass: "navbar-item" }, [
-            _c("i", { staticClass: "fa fa-shopping-cart" }, [
-              _vm._v(" \n        "),
-              _c("div", { staticClass: "tag is-danger is-small" }, [
-                _vm._v("3"),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]
-    )
+            }),
+          ]
+        ),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
@@ -1306,189 +1395,204 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "section" }, [
+    _c("div", { staticClass: "box" }, [
+      _c("div", { staticClass: "columns is-mobile" }, [
+        _c("article", { staticClass: "media" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "media-left mr-6",
+              staticStyle: { position: "sticky", top: "1rem" },
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-primary is-pulled-right" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-small",
+                    on: { click: _vm.addToCart },
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-shopping-cart" }, [
+                      _vm._v(" Add to cart"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(3),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section" }, [
-      _c("div", { staticClass: "box" }, [
-        _c("div", { staticClass: "columns is-mobile" }, [
-          _c("article", { staticClass: "media" }, [
-            _c(
-              "div",
-              {
-                staticClass: "media-left is-marginless",
-                staticStyle: { position: "sticky", top: "0" },
+    return _c(
+      "div",
+      {
+        staticClass: "media-left is-marginless",
+        staticStyle: { position: "sticky", top: "0" },
+      },
+      [
+        _c("div", { staticClass: "card-image column" }, [
+          _c("figure", { staticClass: "image" }, [
+            _c("img", {
+              attrs: {
+                src: "https://picsum.photos/40/40",
+                alt: "Placeholder image",
               },
-              [
-                _c("div", { staticClass: "card-image column" }, [
-                  _c("figure", { staticClass: "image" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "https://picsum.photos/40/40",
-                        alt: "Placeholder image",
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-image column" }, [
-                  _c("figure", { staticClass: "image" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "https://picsum.photos/40/40",
-                        alt: "Placeholder image",
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-image column" }, [
-                  _c("figure", { staticClass: "image" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "https://picsum.photos/40/40",
-                        alt: "Placeholder image",
-                      },
-                    }),
-                  ]),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "media-left mr-6",
-                staticStyle: { position: "sticky", top: "1rem" },
-              },
-              [
-                _c("div", { staticClass: "card-image" }, [
-                  _c("figure", { staticClass: "image" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "https://picsum.photos/400/400",
-                        alt: "Placeholder image",
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column is-primary is-pulled-right" },
-                  [
-                    _c("button", { staticClass: "button is-small" }, [
-                      _c("i", { staticClass: "fa fa-shopping-cart" }, [
-                        _vm._v(" Add to cart"),
-                      ]),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-primary is-pulled-left" }, [
-                  _c("div", { staticClass: "tag subtitle is-black" }, [
-                    _vm._v(
-                      "\n                            Rp.2000\n                        "
-                    ),
-                  ]),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "media-content" }, [
-              _c("div", { staticClass: "content" }, [
-                _c("p", { staticClass: "title" }, [
-                  _c("strong", { staticClass: "title" }, [
-                    _vm._v("John Smith"),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("h3", [_vm._v("Hello World")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v("Lorem ipsum"),
-                  _c("sup", [_c("a", [_vm._v("[1]")])]),
-                  _vm._v(
-                    " dolor sit amet, consectetur adipiscing elit.\n                            Nulla\n                            accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum\n                            justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel\n                            erat vel, interdum mattis neque. Sub"
-                  ),
-                  _c("sub", [_vm._v("script")]),
-                  _vm._v(" works as well!"),
-                ]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("Second level")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v("Curabitur accumsan turpis pharetra "),
-                  _c("strong", [_vm._v("augue tincidunt")]),
-                  _vm._v(
-                    " blandit.\n                            Quisque\n                            condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel\n                            cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus\n                            facilisis. Donec at dignissim dui. Ut et neque nisl."
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("ul", [
-                  _c("li", [
-                    _vm._v(
-                      "In fermentum leo eu lectus mollis, quis dictum mi aliquet."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _vm._v(
-                      "Morbi eu nulla lobortis, lobortis est in, fringilla felis."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _vm._v(
-                      "Aliquam nec felis in sapien venenatis viverra fermentum nec lectus."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Ut non enim metus.")]),
-                ]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("Third level")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Quisque ante lacus, malesuada ac auctor vitae, congue "
-                  ),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("non ante")]),
-                  _vm._v(
-                    ".\n                            Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu\n                            rutrum tellus."
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("ol", [
-                  _c("li", [_vm._v("Donec blandit a lorem id convallis.")]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _vm._v("Cras gravida arcu at diam gravida gravida."),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Integer in volutpat libero.")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Donec a diam tellus.")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Aenean nec tortor orci.")]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _vm._v(
-                      "Quisque aliquam cursus urna, non bibendum massa viverra eget."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Vivamus maximus ultricies pulvinar.")]),
-                ]),
-              ]),
-            ]),
+            }),
           ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-image column" }, [
+          _c("figure", { staticClass: "image" }, [
+            _c("img", {
+              attrs: {
+                src: "https://picsum.photos/40/40",
+                alt: "Placeholder image",
+              },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-image column" }, [
+          _c("figure", { staticClass: "image" }, [
+            _c("img", {
+              attrs: {
+                src: "https://picsum.photos/40/40",
+                alt: "Placeholder image",
+              },
+            }),
+          ]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-image" }, [
+      _c("figure", { staticClass: "image" }, [
+        _c("img", {
+          attrs: {
+            src: "https://picsum.photos/400/400",
+            alt: "Placeholder image",
+          },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column is-primary is-pulled-left" }, [
+      _c("div", { staticClass: "tag subtitle is-black" }, [_vm._v("Rp.2000")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-content" }, [
+      _c("div", { staticClass: "content" }, [
+        _c("p", { staticClass: "title" }, [
+          _c("strong", { staticClass: "title" }, [_vm._v("John Smith")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("h3", [_vm._v("Hello World")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n              Lorem ipsum"),
+          _c("sup", [_c("a", [_vm._v("[1]")])]),
+          _vm._v(
+            " dolor sit amet, consectetur\n              adipiscing elit. Nulla accumsan, metus ultrices eleifend\n              gravida, nulla nunc varius lectus, nec rutrum justo nibh eu\n              lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin\n              vel erat vel, interdum mattis neque. Sub"
+          ),
+          _c("sub", [_vm._v("script")]),
+          _vm._v(" works\n              as well!\n            "),
+        ]),
+        _vm._v(" "),
+        _c("h3", [_vm._v("Second level")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n              Curabitur accumsan turpis pharetra\n              "
+          ),
+          _c("strong", [_vm._v("augue tincidunt")]),
+          _vm._v(
+            " blandit. Quisque condimentum\n              maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna\n              vel cursus venenatis. Suspendisse potenti. Etiam mattis sem\n              rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et\n              neque nisl.\n            "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("ul", [
+          _c("li", [
+            _vm._v(
+              "\n                In fermentum leo eu lectus mollis, quis dictum mi aliquet.\n              "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n                Morbi eu nulla lobortis, lobortis est in, fringilla felis.\n              "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n                Aliquam nec felis in sapien venenatis viverra fermentum nec\n                lectus.\n              "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Ut non enim metus.")]),
+        ]),
+        _vm._v(" "),
+        _c("h3", [_vm._v("Third level")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n              Quisque ante lacus, malesuada ac auctor vitae, congue\n              "
+          ),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("non ante")]),
+          _vm._v(
+            ". Phasellus lacus ex, semper ac tortor\n              nec, fringilla condimentum orci. Fusce eu rutrum tellus.\n            "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("ol", [
+          _c("li", [_vm._v("Donec blandit a lorem id convallis.")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Cras gravida arcu at diam gravida gravida.")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Integer in volutpat libero.")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Donec a diam tellus.")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Aenean nec tortor orci.")]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n                Quisque aliquam cursus urna, non bibendum massa viverra eget.\n              "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Vivamus maximus ultricies pulvinar.")]),
         ]),
       ]),
     ])

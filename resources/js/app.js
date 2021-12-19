@@ -19,13 +19,46 @@ const productsStore = {
     getters: {
         getProducts: state => {
             return state.products
+        },
+        getProductById: (state) => (id) => {
+            const find = state.products.filter(items => items.id == id)
+            if (find.length > 0) {
+                return find[0]
+            }
         }
     }
+};
+
+const cartStore = {
+    state: {
+        cart: []
+    },
+    getters: {
+        getCart: state => {
+            return state.cart
+        }
+    },
+    mutations: {
+        addToCart(state, product) {
+            const findInCart = state.cart.filter(theCart => theCart.id == product.id)
+            const alreadyInCart = findInCart.length > 0
+
+            if (alreadyInCart) {
+                findInCart[0].total += 1;
+            }
+            else {
+                product.total = 1
+                state.cart.push(product)
+            }
+        }
+    }
+
 };
 
 const store = new Vuex.Store({
     modules: {
         products: productsStore,
+        cart: cartStore
     }
 })
 
