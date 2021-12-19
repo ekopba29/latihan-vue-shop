@@ -429,7 +429,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     product: function product() {
-      return this.$store.getters.getProductById(1);
+      return this.$store.getters.getProductById(this.$route.params.id);
     }
   },
   methods: {

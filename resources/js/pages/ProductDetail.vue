@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     product() {
-      return this.$store.getters.getProductById(1);
+      return this.$store.getters.getProductById(this.$route.params.id);
     },
   },
   methods: {

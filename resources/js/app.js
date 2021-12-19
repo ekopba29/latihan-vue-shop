@@ -42,7 +42,6 @@ const cartStore = {
         addToCart(state, product) {
             const findInCart = state.cart.filter(theCart => theCart.id == product.id)
             const alreadyInCart = findInCart.length > 0
-
             if (alreadyInCart) {
                 findInCart[0].total += 1;
             }
