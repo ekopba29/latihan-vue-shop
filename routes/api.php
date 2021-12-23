@@ -19,5 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('abc',function(Request $request) {
+    $path = $request->file('ktp')->store('ktp');
+    // dd($request);
+    // return [$request, $path];
+});
 
 Route::get('product',[ProductController::class,'index']);
